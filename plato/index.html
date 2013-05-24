@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - JavaScript Introspection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script>
+    var __options = {"flags":{"complexity":{"logicalor":true,"switchcase":true,"forin":false,"trycatch":false,"newmi":true},"jshint":{"globals":{},"options":{"es5":true,"strict":true,"node":true,"browser":true,"jquery":true,"onevar":true,"indent":2,"laxcomma":true,"laxbreak":true,"eqeqeq":true,"immed":true,"undef":true,"unused":true,"latedef":true,"curly":true,"trailing":true}}}}
+  </script>
+
+  <link href="assets/css/vendor/bootstrap-3.0.0-wip.css" rel="stylesheet">
+  <link href="assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="assets/css/vendor/font-awesome-ie7.css" rel="stylesheet">
+  <link href="assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="assets/css/plato.css" rel="stylesheet">
+  <link href="assets/css/plato-overview.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="brand" href="http://github.com/jsoverson/plato">Plato on Github</a>
+    <ul class="nav">
+      <li class="active">
+        <a href="index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>JavaScript Source Analysis</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <h1 class="span12">Summary</h1>
+  </div>
+  <div class="row">
+    <div class="span6">
+      <h2 class="header">Total/Average Lines <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code" data-original-title="SLOC"></i></h2>
+      <p class="stat">3169 / 132</p>
+    </div>
+    <div class="span6">
+      <h2 class="header">Average Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
+      <p class="stat">64.44</p>
+    </div>
+  </div>
+</div>
+<div class="container historical">
+  <div class="row">
+    <div class="span6">
+      <div id="chart_historical_sloc" class="chart js-chart"></div>
+    </div>
+    <div class="span6">
+      <div id="chart_historical_maint" class="chart js-chart"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container overview">
+  <div class="row">
+    <h2 class="span12">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"></i></a></h2>
+    <div class="span12"><div id='chart_maintainability' class='chart js-chart'></div></div>
+  </div>
+  <div class="row">
+    <h2 class="span12">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code" data-original-title="SLOC"></i></h2>
+    <div class="span12"><div id='chart_sloc' class='chart js-chart'></div></div>
+  </div>
+  <div class="row">
+    <h2 class="span12">Estimated errors in implementation <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs"></i></a></h2>
+    <div class="span12"><div id='chart_bugs' class='chart js-chart'></div></div>
+  </div>
+  
+  <div class="row">
+    <h2 class="span12">Lint errors</h2>
+    <div class="span12"><div id='chart_lint' class='chart js-chart'></div></div>
+  </div>
+  
+</div>
+
+<div class="container">
+  <div class="row">
+    <h1 class="span12">Files</h1>
+  </div>
+  <div class="row">
+    <ul class="file-list list-unstyled">
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_applications_js/index.html">controllers/applications.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="59"
+              data-bugs="0.32"
+              data-complexity="3"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_badge_categories_js/index.html">controllers/badge_categories.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="93"
+              data-bugs="0.56"
+              data-complexity="5"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_badges_js/index.html">controllers/badges.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="111"
+              data-bugs="0.74"
+              data-complexity="5"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_events_js/index.html">controllers/events.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="77"
+              data-bugs="0.47"
+              data-complexity="4"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_event_types_js/index.html">controllers/event_types.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="93"
+              data-bugs="0.57"
+              data-complexity="5"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_leaderboard_js/index.html">controllers/leaderboard.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="1"
+              data-sloc="24"
+              data-bugs="0.10"
+              data-complexity="2"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_ping_js/index.html">controllers/ping.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="14"
+              data-bugs="0.02"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_rules_js/index.html">controllers/rules.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="133"
+              data-bugs="0.90"
+              data-complexity="6"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/controllers_users_js/index.html">controllers/users.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="161"
+              data-bugs="1.14"
+              data-complexity="7"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/db_mysql_js/index.html">db/mysql.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="397"
+              data-bugs="2.52"
+              data-complexity="22"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/db_riak_js/index.html">db/riak.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="5"
+              data-sloc="585"
+              data-bugs="6.28"
+              data-complexity="63"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/db_static_js/index.html">db/static.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="448"
+              data-bugs="1.84"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/helpers_response_handler_js/index.html">helpers/response_handler.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="27"
+              data-bugs="0.14"
+              data-complexity="2"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/helpers_validator_js/index.html">helpers/validator.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="122"
+              data-bugs="0.93"
+              data-complexity="16"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/lib_gitification_js/index.html">lib/gitification.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="189"
+              data-bugs="1.44"
+              data-complexity="5"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/lib_riak_clean_js/index.html">lib/riak-clean.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="51"
+              data-bugs="0.40"
+              data-complexity="3"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_applications_test_js/index.html">test/gitification-applications-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="51"
+              data-bugs="0.40"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_badgecategories_test_js/index.html">test/gitification-badgecategories-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="63"
+              data-bugs="0.49"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_badges_test_js/index.html">test/gitification-badges-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="98"
+              data-bugs="0.81"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_events_test_js/index.html">test/gitification-events-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="60"
+              data-bugs="0.48"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_eventtypes_test_js/index.html">test/gitification-eventtypes-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="75"
+              data-bugs="0.52"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_leaderboard_test_js/index.html">test/gitification-leaderboard-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="17"
+              data-bugs="0.09"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_rules_test_js/index.html">test/gitification-rules-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="114"
+              data-bugs="0.87"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+      <li class="span12">
+        <span class="fade-left fadeout visible-desktop"></span>
+        <span class="span4 file"><a class="file-link" href="./files/test_gitification_users_test_js/index.html">test/gitification-users-test.js</a></span>
+        <span class="span8 file-chart js-file-chart"
+              data-lint="0"
+              data-sloc="107"
+              data-bugs="0.79"
+              data-complexity="1"
+          ></span>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/javascript" src="assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="assets/scripts/plato-overview.js"></script>
+</body>
+</html>
